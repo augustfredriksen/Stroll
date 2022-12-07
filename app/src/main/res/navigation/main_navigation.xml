@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/registerFragment">
+
+    <!-- Bottom bar actions -->
+    <action android:id="@+id/action_global_homeFragment"
+        app:destination="@+id/homeFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_navigation"
+        app:popUpToInclusive="true"/>
+    <action android:id="@+id/action_global_mapFragment"
+        app:destination="@id/mapFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_navigation"
+        app:popUpToInclusive="true"/>
+    <action android:id="@+id/action_global_hikesFragment"
+        app:destination="@+id/hikesFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_navigation"
+        app:popUpToInclusive="true"/>
+
+    <!-- Toolbar actions -->
+    <action android:id="@+id/action_global_settingsFragment"
+        app:destination="@+id/settingsFragment"
+        app:launchSingleTop="true"/>
+    <action android:id="@+id/action_global_sensorFragment"
+        app:destination="@+id/sensorFragment"
+        app:launchSingleTop="true"/>
+    <action android:id="@+id/action_global_introductionFragment"
+        app:destination="@+id/introductionFragment"
+        app:launchSingleTop="true" />
+    <action android:id="@+id/action_global_arFragment"
+        app:destination="@+id/ARFragment"
+        app:launchSingleTop="true"/>
+    <action android:id="@+id/action_global_aboutFragment"
+        app:destination="@+id/aboutFragment"
+        app:launchSingleTop="true"/>
+
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.stroll.presentation.fragment.RegisterFragment"
+        android:label="@string/register"
+        tools:layout="@layout/fragment_register">
+        <action android:id="@+id/action_registerFragment_to_homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.stroll.presentation.fragment.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/hikesFragment"
+        android:name="com.example.stroll.presentation.fragment.HikesFragment"
+        android:label="@string/hikes"
+        tools:layout="@layout/fragment_hikes">
+        <action
+            android:id="@+id/action_hikesFragment_to_hikeDetailsFragment"
+            app:destination="@id/hikeDetailsFragment" >
+        </action>
+        <action
+            android:id="@+id/action_hikesFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hikeDetailsFragment"
+        android:name="com.example.stroll.presentation.fragment.HikeDetailsFragment"
+        android:label="@string/details"
+        tools:layout="@layout/fragment_hike_details">
+        <argument
+            android:name="id"
+            app:argType="integer"/>
+        <action
+            android:id="@+id/action_hikeDetailsFragment_to_fullPhotoFragment"
+            app:destination="@id/fullPhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.stroll.presentation.fragment.MapFragment"
+        android:label="@string/map"
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_mapFragment_to_hikesFragment"
+            app:destination="@id/hikesFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_addMarkerFragment"
+            app:destination="@id/addMarkerFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_ARFragment"
+            app:destination="@id/ARFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.stroll.presentation.fragment.StatisticsFragment"
+        android:label="@string/statistics"
+        tools:layout="@layout/fragment_statistics">
+        <action
+            android:id="@+id/action_statisticsFragment_to_hikesFragment"
+            app:destination="@id/hikesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/introductionFragment"
+        android:name="com.example.stroll.presentation.fragment.IntroductionFragment"
+        android:label="@string/introduction"
+        tools:layout="@layout/fragment_introduction"/>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.stroll.presentation.fragment.SettingsFragment"
+        android:label="@string/settings" />
+    <fragment
+        android:id="@+id/sensorFragment"
+        android:name="com.example.stroll.presentation.fragment.SensorFragment"
+        android:label="@string/sensors"
+        tools:layout="@layout/fragment_sensor"/>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.stroll.presentation.fragment.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about"/>
+    <fragment
+        android:id="@+id/ARFragment"
+        android:name="com.example.stroll.presentation.fragment.ARFragment"
+        android:label="@string/augmented_reality"
+        tools:layout="@layout/fragment_a_r">
+        <argument
+            android:name="poiName"
+            app:argType="string" />
+        <argument
+            android:name="latLng"
+            app:argType="com.example.stroll.data.local.LatLong" />
+        <argument
+            android:name="category"
+            app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addMarkerFragment"
+        android:name="com.example.stroll.presentation.fragment.AddMarkerFragment"
+        android:label="@string/create_point_of_interest"
+        tools:layout="@layout/fragment_add_marker" >
+        <action
+            android:id="@+id/action_addMarkerFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullPhotoFragment"
+        android:name="com.example.stroll.presentation.fragment.FullPhotoFragment"
+        android:label="string/full_photo"
+        tools:layout="@layout/fragment_full_photo">
+        <argument
+            android:name="hikeId"
+            app:argType="integer" />
+        <argument
+            android:name="photoName"
+            app:argType="string" />
+    </fragment>
+</navigation>
